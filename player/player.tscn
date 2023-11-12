@@ -1,0 +1,110 @@
+[gd_scene load_steps=9 format=3 uid="uid://cctcduacrw0fj"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_kv0mp"]
+[ext_resource type="PackedScene" uid="uid://dyb73gwdeh1c2" path="res://common_components/hurtbox_component.tscn" id="2_llado"]
+[ext_resource type="PackedScene" uid="uid://ctc48s6nmiom3" path="res://common_components/health_component.tscn" id="3_el2sj"]
+[ext_resource type="PackedScene" uid="uid://cyx2qkytb0y7d" path="res://common_components/teleport_component.tscn" id="4_50q54"]
+
+[sub_resource type="Animation" id="Animation_pj84w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship/Thrust:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mjss2"]
+resource_name = "boosters_on"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ship/Thrust:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_lah1g"]
+resource_name = "teleport"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.1, 0.25, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.5, 1.5), Vector2(0.5, 0.5), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wdyf3"]
+_data = {
+"RESET": SubResource("Animation_pj84w"),
+"teleport": SubResource("Animation_lah1g"),
+"thrust": SubResource("Animation_mjss2")
+}
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_skill")]
+position = Vector2(300, 300)
+script = ExtResource("1_kv0mp")
+movement_skill = NodePath("TeleportComponent")
+
+[node name="Ship" type="Line2D" parent="."]
+scale = Vector2(1, 1.00746)
+points = PackedVector2Array(0, -15.8815, 48, 0, 0, 15.8815, 8, 13, 8, -13)
+width = 3.0
+default_color = Color(0, 0.501961, 0, 1)
+
+[node name="Thrust" type="Line2D" parent="Ship"]
+visible = false
+points = PackedVector2Array(0, -7.94076, -12, 2.08165e-12, 0, 7.94076, 0, -7.94076)
+width = 3.0
+default_color = Color(0, 0.501961, 0, 1)
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_llado")]
+health_component = NodePath("../HealthComponent")
+
+[node name="Hurtbox" type="CollisionPolygon2D" parent="HurtboxComponent"]
+polygon = PackedVector2Array(0, -15.8815, 48, 0, 0, 15.8815, 8, 13, 8, -13)
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_el2sj")]
+
+[node name="CollisionShape" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -15.8815, 48, 0, 0, 15.8815, 8, 13, 8, -13)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wdyf3")
+}
+
+[node name="TeleportComponent" parent="." instance=ExtResource("4_50q54")]
+
+[connection signal="teleported" from="TeleportComponent" to="." method="_on_teleport_component_teleported"]

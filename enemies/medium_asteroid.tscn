@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv8h5yt73nlyf"]
+
+[ext_resource type="Script" path="res://enemies/asteroid.gd" id="1_8amut"]
+[ext_resource type="PackedScene" uid="uid://dyb73gwdeh1c2" path="res://common_components/hurtbox_component.tscn" id="2_nfqdx"]
+[ext_resource type="PackedScene" uid="uid://ctc48s6nmiom3" path="res://common_components/health_component.tscn" id="3_hxtgy"]
+
+[node name="Asteroid" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_8amut")
+type = 1
+points = 50
+min_speed = 175.0
+max_speed = 275.0
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(40, 79.6444, 81, 37, 122, 60.7852, 179, 41, 211, 95, 158, 90.563, 165, 156.074, 107, 140.193, 87, 194.785, 34, 135, 40, 80.637)
+width = 5.0
+default_color = Color(0, 0.501961, 0, 1)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(-32, -8)
+polygon = PackedVector2Array(40, 79.6444, 81, 37, 122, 60.7852, 179, 41, 211, 95, 158, 90.563, 165, 156.074, 107, 140.193, 87, 194.785, 34, 135, 40, 80.637)
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_nfqdx")]
+health_component = NodePath("../HealthComponent")
+
+[node name="Hurtbox" type="CollisionPolygon2D" parent="HurtboxComponent"]
+polygon = PackedVector2Array(40, 79.6444, 81, 37, 122, 60.7852, 179, 41, 211, 95, 158, 90.563, 165, 156.074, 107, 140.193, 87, 194.785, 34, 135, 40, 80.637)
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_hxtgy")]
+
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

@@ -21,7 +21,6 @@ var settings = {
 		"player_color": Color(Color.ORANGE),
 		"line_width": 5,
 		"line_color": Color(Color.WEB_GREEN),
-		"window_size": Vector2(1600,900)
 	}
 }
 
@@ -96,6 +95,3 @@ func get_player_color():
 func set_player_color(color):
 	settings["visual"]["player_color"] = color
 	save_settings()
-
-func get_window_size():
-	return settings["visual"]["window_size"]

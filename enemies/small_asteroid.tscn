@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b1ya1c4soy6ei"]
 
-[ext_resource type="Script" path="res://entities/asteroid.gd" id="1_tr2t1"]
+[ext_resource type="Script" path="res://enemies/asteroid.gd" id="1_tr2t1"]
 
 [node name="Asteroid" type="RigidBody2D"]
 gravity_scale = 0.0
