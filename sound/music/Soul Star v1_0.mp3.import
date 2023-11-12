@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bpfbq47jumjyw"
+path="res://.godot/imported/Soul Star v1_0.mp3-ddec18f33ae073f44c7afc704106e40a.mp3str"
+
+[deps]
+
+source_file="res://sound/music/Soul Star v1_0.mp3"
+dest_files=["res://.godot/imported/Soul Star v1_0.mp3-ddec18f33ae073f44c7afc704106e40a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
