@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1ya1c4soy6ei"]
+
+[ext_resource type="Script" path="res://entities/asteroid.gd" id="1_tr2t1"]
+
+[node name="Asteroid" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_tr2t1")
+type = 0
+points = 100
+min_speed = 200.0
+max_speed = 300.0
+
+[node name="Line2D" type="Line2D" parent="."]
+scale = Vector2(1, 1.00746)
+points = PackedVector2Array(94, 48.637, 113, 26.8, 141, 47.6444, 170, 27.7926, 187, 53.6, 159, 71.4667, 177, 93.3037, 147, 107.2, 122, 84.3704, 105, 100.252, 86, 83.3778, 115, 64.5185, 95, 46.6518)
+width = 5.0
+default_color = Color(0, 0.501961, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 35
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(94, 48.637, 113, 26.8, 141, 47.6444, 170, 27.7926, 187, 53.6, 159, 71.4667, 177, 93.3037, 147, 107.2, 122, 84.3704, 105, 100.252, 86, 83.3778, 115, 64.5185, 95, 46.6518)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(94, 48.637, 113, 26.8, 141, 47.6444, 170, 27.7926, 187, 53.6, 159, 71.4667, 177, 93.3037, 147, 107.2, 122, 84.3704, 105, 100.252, 86, 83.3778, 115, 64.5185, 95, 46.6518)
