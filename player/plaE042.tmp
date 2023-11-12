@@ -79,9 +79,6 @@ script = ExtResource("1_kv0mp")
 main_weapon = ExtResource("2_bbnrq")
 movement_skill = NodePath("TeleportComponent")
 
-[node name="CollisionShape" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, -15.8815, 48, 0, 0, 15.8815, 8, 13, 8, -13)
-
 [node name="Ship" type="Line2D" parent="."]
 scale = Vector2(1, 1.00746)
 points = PackedVector2Array(0, -15.8815, 48, 0, 0, 15.8815, 8, 13, 8, -13)
@@ -94,27 +91,22 @@ points = PackedVector2Array(0, -7.94076, -12, 2.08165e-12, 0, 7.94076, 0, -7.940
 width = 3.0
 default_color = Color(0, 0.501961, 0, 1)
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_el2sj")]
-
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_llado")]
-collision_layer = 1
-collision_mask = 28
 health_component = NodePath("../HealthComponent")
 
 [node name="Hurtbox" type="CollisionPolygon2D" parent="HurtboxComponent"]
 polygon = PackedVector2Array(0, -15.8815, 48, 0, 0, 15.8815, 8, 13, 8, -13)
 
-[node name="TeleportComponent" parent="." instance=ExtResource("4_50q54")]
+[node name="HealthComponent" parent="." instance=ExtResource("3_el2sj")]
+
+[node name="CollisionShape" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -15.8815, 48, 0, 0, 15.8815, 8, 13, 8, -13)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_wdyf3")
 }
 
-[node name="MainWeaponTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-autostart = true
+[node name="TeleportComponent" parent="." instance=ExtResource("4_50q54")]
 
 [connection signal="teleported" from="TeleportComponent" to="." method="_on_teleport_component_teleported"]
-[connection signal="timeout" from="MainWeaponTimer" to="." method="_on_main_weapon_timer_timeout"]

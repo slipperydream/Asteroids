@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://df7c8jicnalpe"]
+
+[ext_resource type="Script" path="res://player/bullet.gd" id="1_7kps2"]
+[ext_resource type="PackedScene" uid="uid://dsbuqlt6yb7a8" path="res://common_components/hitbox_component.tscn" id="1_o5s6w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbja8"]
+size = Vector2(24, 2)
+
+[node name="Bullet" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_7kps2")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="HitboxComponent" parent="." instance=ExtResource("1_o5s6w")]
+collision_layer = 1
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(12, 0)
+shape = SubResource("RectangleShape2D_xbja8")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 24, 0)
+width = 3.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]

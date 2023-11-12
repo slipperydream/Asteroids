@@ -16,6 +16,7 @@ script = ExtResource("1_ude2v")
 asteroid_scenes = Array[PackedScene]([ExtResource("2_gevfs"), ExtResource("3_v0qt2"), ExtResource("4_w661o")])
 
 [node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 4.0
 one_shot = true
 
 [node name="SpawnPath" type="Path2D" parent="."]

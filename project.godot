@@ -21,6 +21,7 @@ BackgroundMusic="*res://sound/background_music.tscn"
 AudioStreamManager="*res://sound/AudioStreamManager.gd"
 SettingsManager="*res://utility/settings_manager.tscn"
 HighScoreSystem="*res://utility/high_score_system.tscn"
+WeaponManager="*res://utility/weapon_manager.tscn"
 
 [display]
 

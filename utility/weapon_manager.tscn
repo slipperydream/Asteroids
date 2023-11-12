@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcgsu414xojex"]
+
+[ext_resource type="Script" path="res://utility/weapon_manager.gd" id="1_odrbg"]
+
+[node name="WeaponManager" type="Node"]
+script = ExtResource("1_odrbg")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
