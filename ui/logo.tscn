@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcai38xe752jx"]
+
+[ext_resource type="Texture2D" uid="uid://pdkeyw4uk08w" path="res://ui/Logos.png" id="1_ddyis"]
+
+[node name="Logo" type="TextureRect"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -216.0
+offset_top = 20.0
+offset_right = 216.0
+offset_bottom = 98.0
+grow_horizontal = 2
+texture = ExtResource("1_ddyis")
+expand_mode = 1

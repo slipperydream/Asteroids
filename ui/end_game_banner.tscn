@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://d07ihd6x1nrno"]
+
+[ext_resource type="Script" path="res://ui/end_game_banner.gd" id="1_0e6gk"]
+[ext_resource type="FontFile" uid="uid://bg3fe77q7ljcc" path="res://ui/fonts/justabit.ttf" id="1_cgtnu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8nf5j"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="EndGameBanner" type="Label"]
+custom_minimum_size = Vector2(256, 64)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -27.5
+offset_right = 0.5
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.745098, 0.745098, 0.745098, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("1_cgtnu")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_8nf5j")
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_0e6gk")

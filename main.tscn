@@ -1,16 +1,79 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkhtjfqxagvu3"]
+[gd_scene load_steps=9 format=3 uid="uid://dkhtjfqxagvu3"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_ude2v"]
 [ext_resource type="PackedScene" uid="uid://cctcduacrw0fj" path="res://player/player.tscn" id="2_bcf0k"]
+[ext_resource type="PackedScene" uid="uid://cmxeh4a4jblpp" path="res://ui/score_tracker.tscn" id="4_utd3h"]
+[ext_resource type="PackedScene" uid="uid://81mab4v7827l" path="res://ui/high_score.tscn" id="5_dhsow"]
 [ext_resource type="PackedScene" uid="uid://dewtkqdwpj8pd" path="res://utility/enemy_spawner.tscn" id="5_qc582"]
+[ext_resource type="PackedScene" uid="uid://cxf4bbg8nua1e" path="res://ui/life_counter.tscn" id="6_hhqqx"]
+[ext_resource type="PackedScene" uid="uid://d07ihd6x1nrno" path="res://ui/end_game_banner.tscn" id="7_x5b4y"]
+[ext_resource type="PackedScene" uid="uid://b0kuyc74hv4bg" path="res://ui/countdown_panel.tscn" id="8_46eij"]
 
 [node name="main" type="Node2D" groups=["main"]]
 script = ExtResource("1_ude2v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_qc582")]
 
 [node name="Player" parent="." instance=ExtResource("2_bcf0k")]
 
+[node name="ScoreTracker" parent="." instance=ExtResource("4_utd3h")]
+offset_top = 12.0
+offset_right = 256.0
+offset_bottom = 84.0
+
+[node name="HighScore" parent="." instance=ExtResource("5_dhsow")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 1350.0
+offset_top = 15.0
+offset_right = 1561.0
+offset_bottom = 87.0
+grow_horizontal = 2
+
+[node name="LifeCounter" parent="." instance=ExtResource("6_hhqqx")]
+offset_left = 226.0
+offset_top = 9.0
+offset_right = 592.0
+offset_bottom = 44.0
+
+[node name="EndGameBanner" parent="." instance=ExtResource("7_x5b4y")]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 667.0
+offset_top = 404.0
+offset_right = 923.0
+offset_bottom = 468.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="CountdownPanel" parent="." instance=ExtResource("8_46eij")]
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 767.0
+offset_top = 407.0
+offset_right = 831.0
+offset_bottom = 471.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="extra_life_earned" from="." to="." method="_on_extra_life_earned"]
 [connection signal="extra_life_earned" from="." to="EnemySpawner" method="_on_main_extra_life_earned"]
+[connection signal="extra_life_earned" from="." to="LifeCounter" method="_on_main_extra_life_earned"]
+[connection signal="game_over" from="." to="." method="_on_game_over"]
+[connection signal="game_over" from="." to="EnemySpawner" method="_on_main_game_over"]
+[connection signal="game_over" from="." to="LifeCounter" method="_on_main_game_over"]
+[connection signal="game_over" from="." to="EndGameBanner" method="_on_main_game_over"]
+[connection signal="game_over" from="." to="CountdownPanel" method="_on_main_game_over"]
+[connection signal="new_game" from="." to="Player" method="_on_main_new_game"]
+[connection signal="new_game" from="." to="LifeCounter" method="_on_main_new_game"]
+[connection signal="updated_score" from="." to="ScoreTracker" method="_on_main_updated_score"]
 [connection signal="enemies_all_dead" from="EnemySpawner" to="." method="_on_enemy_spawner_enemies_all_dead"]
+[connection signal="died" from="Player" to="." method="_on_player_died"]
+[connection signal="died" from="Player" to="LifeCounter" method="_on_player_died"]
+[connection signal="countdown_over" from="CountdownPanel" to="." method="_on_countdown_panel_countdown_over"]

@@ -80,7 +80,7 @@ func stop():
 	spawn_timer.stop()
 	
 func _on_spawn_timer_timeout():
-	if asteroid_count < asteroid_limit:
+	if can_spawn and asteroid_count < asteroid_limit:
 		if asteroid_count <= 0:
 			emit_signal("enemies_all_dead")
 		else:
@@ -101,3 +101,6 @@ func _on_asteroid_shattered(pos, size, _points):
 func _on_main_extra_life_earned():
 	if can_spawn_small_saucer == false:
 		can_spawn_small_saucer = true
+
+func _on_main_game_over():
+	stop()

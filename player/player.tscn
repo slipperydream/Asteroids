@@ -76,6 +76,8 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_skill") groups=["player"]]
 position = Vector2(300, 300)
+collision_layer = 2
+collision_mask = 28
 script = ExtResource("1_kv0mp")
 main_weapon = ExtResource("2_bbnrq")
 explosion_sound = ExtResource("3_6vsem")
@@ -99,7 +101,7 @@ default_color = Color(0, 0.501961, 0, 1)
 [node name="HealthComponent" parent="." instance=ExtResource("3_el2sj")]
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_llado")]
-collision_layer = 1
+collision_layer = 2
 collision_mask = 28
 health_component = NodePath("../HealthComponent")
 
@@ -118,6 +120,11 @@ wait_time = 0.1
 one_shot = true
 autostart = true
 
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]
 [connection signal="teleported" from="TeleportComponent" to="." method="_on_teleport_component_teleported"]
 [connection signal="timeout" from="MainWeaponTimer" to="." method="_on_main_weapon_timer_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

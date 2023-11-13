@@ -77,3 +77,7 @@ special_weapon_fire={
 2d_physics/layer_4="UFO"
 2d_physics/layer_5="UFO Weapons"
 2d_physics/layer_6="Wormhole"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.0941176, 0.0784314, 0.145098, 1)

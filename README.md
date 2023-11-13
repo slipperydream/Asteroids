@@ -29,3 +29,18 @@ License CC BY 3.0
 ### Sound Effects
 Explosion sounds 
 CCO https://kronbits.itch.io/freesfx
+
+### Fonts
+PixelMecha  by HuseyinAlperTUNA
+PixelMechaBold by HuseyinAlperTUNA
+Public Domain
+
+FutureKid by kadykunde
+Public Domain
+
+Justabit by Alex Sheyn
+Public Domain
+
+### Icons
+Volume and Mute by UXWING
+

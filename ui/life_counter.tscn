@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxf4bbg8nua1e"]
+
+[ext_resource type="Script" path="res://ui/LifeCounter.gd" id="1_4ubed"]
+[ext_resource type="Texture2D" uid="uid://65reoyvcux4a" path="res://ui/life_icon.png" id="2_72uil"]
+
+[node name="LifeCounter" type="HBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -183.0
+offset_right = 183.0
+offset_bottom = 35.0
+grow_horizontal = 2
+script = ExtResource("1_4ubed")
+
+[node name="LifeIcon1" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_72uil")
+
+[node name="LifeIcon2" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_72uil")
+
+[node name="LifeIcon3" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_72uil")
+
+[node name="LifeIcon4" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_72uil")
+
+[node name="LifeIcon5" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_72uil")
+
+[node name="LifeIcon6" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_72uil")
+
+[node name="LifeIcon7" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_72uil")
+
+[node name="LifeIcon8" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_72uil")
+
+[node name="LifeIcon9" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_72uil")
+
+[node name="LifeIcon10" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_72uil")

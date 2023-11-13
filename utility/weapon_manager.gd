@@ -14,7 +14,7 @@ func can_shoot():
 		print("too many bullets")
 		return false
 
-func _on_child_entered_tree(node):
+func _on_child_entered_tree(_node):
 	bullet_count += 1
 
 func _on_bullet_expended():

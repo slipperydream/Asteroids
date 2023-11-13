@@ -17,11 +17,11 @@ func save_high_score(value):
 func get_high_score():
 	if not FileAccess.file_exists(high_score_file):
 		print("No high scores file!")
-		return
+		return 0
 		
 	var file = FileAccess.open(high_score_file, FileAccess.READ)
 	var value = file.get_var()
-	print(value)
+
 	if value >= 0:
 		high_score = value
 		return high_score

@@ -18,6 +18,7 @@ signal died
 @onready var thrust = $Ship/Thrust
 @onready var health = $HealthComponent
 @onready var main_weapon_timer = $MainWeaponTimer
+@onready var invincibility_timer = $InvincibilityTimer
 
 var rotation_direction = 0
 var forward_thrust = 0
@@ -29,6 +30,7 @@ func _ready():
 	is_alive = true
 	visible = true
 	health.max_health = hp
+	health.is_dead = false
 	ship.width = SettingsManager.get_line_width()
 	ship.default_color = SettingsManager.get_player_color()
 	thrust.width = SettingsManager.get_line_width()
@@ -36,6 +38,9 @@ func _ready():
 	main_weapon_timer.wait_time = main_weapon_cooldown
 	main_weapon_timer.start()
 	reset_pos()
+	health.set_invulnerability(true)
+	invincibility_timer.start()
+	
 	
 func get_movement_input():
 	rotation_direction = Input.get_axis("left", "right")
@@ -103,6 +108,12 @@ func explode():
 func reset_pos():
 	var screen_size = get_viewport_rect().size
 	global_position = Vector2(screen_size.x/2, screen_size.y/2)
-	
 
+func _on_main_new_game():
+	_ready()
 	
+func reset():
+	_ready()
+
+func _on_invincibility_timer_timeout():
+	health.set_invulnerability(false)
