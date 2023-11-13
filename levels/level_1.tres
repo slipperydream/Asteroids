@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelConfig" load_steps=2 format=3 uid="uid://d4ljgg0h7d01a"]
+
+[ext_resource type="Script" path="res://levels/level_config.gd" id="1_25my5"]
+
+[resource]
+script = ExtResource("1_25my5")
+spawn_time = 5.0
+initial_release = 4
+asteroid_limit = 26

@@ -1,17 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfma0dvpergj6"]
+[gd_scene load_steps=6 format=3 uid="uid://bfma0dvpergj6"]
 
 [ext_resource type="Script" path="res://enemies/asteroid.gd" id="1_0htht"]
 [ext_resource type="PackedScene" uid="uid://dyb73gwdeh1c2" path="res://common_components/hurtbox_component.tscn" id="2_pfxa0"]
+[ext_resource type="AudioStream" uid="uid://siej6ub6xtlq" path="res://sound/sfx/Explosion 3 - Sound effects Pack 2.wav" id="2_prvch"]
 [ext_resource type="PackedScene" uid="uid://dsbuqlt6yb7a8" path="res://common_components/hitbox_component.tscn" id="3_nlcly"]
 [ext_resource type="PackedScene" uid="uid://ctc48s6nmiom3" path="res://common_components/health_component.tscn" id="4_ucf7c"]
 
-[node name="Asteroid" type="RigidBody2D"]
+[node name="Asteroid" type="RigidBody2D" groups=["asteroids", "enemies"]]
 collision_layer = 4
 collision_mask = 3
 gravity_scale = 0.0
 script = ExtResource("1_0htht")
 min_speed = 192.0
 max_speed = 231.0
+explosion_sound = ExtResource("2_prvch")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-37, -2, -48, 34, -20, 56, 31, 51, 62, 30, 43, 8, 63, -22, 34, -53, 6, -34, -7, -53, -47, -32, -37, -3)
@@ -35,3 +37,5 @@ health_component = NodePath("../HealthComponent")
 
 [node name="Hurtbox" type="CollisionPolygon2D" parent="HurtboxComponent"]
 polygon = PackedVector2Array(-37, -2, -48, 34, -20, 56, 31, 51, 62, 30, 43, 8, 63, -22, 34, -53, 6, -34, -7, -53, -47, -32, -37, -3)
+
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

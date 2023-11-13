@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://dewtkqdwpj8pd"]
+
+[ext_resource type="Script" path="res://utility/enemy_spawner.gd" id="1_yrjo1"]
+[ext_resource type="PackedScene" uid="uid://b1ya1c4soy6ei" path="res://enemies/small_asteroid.tscn" id="2_8jemm"]
+[ext_resource type="PackedScene" uid="uid://cv8h5yt73nlyf" path="res://enemies/medium_asteroid.tscn" id="3_hfwqy"]
+[ext_resource type="PackedScene" uid="uid://bfma0dvpergj6" path="res://enemies/large_asteroid.tscn" id="4_fi32o"]
+[ext_resource type="Resource" uid="uid://d4ljgg0h7d01a" path="res://levels/level_1.tres" id="5_ki3nw"]
+
+[sub_resource type="Curve2D" id="Curve2D_p816j"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1600, 0, 0, 0, 0, 0, 1600, 900, 0, 0, 0, 0, 0, 900, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_yrjo1")
+asteroid_scenes = Array[PackedScene]([ExtResource("2_8jemm"), ExtResource("3_hfwqy"), ExtResource("4_fi32o")])
+config = ExtResource("5_ki3nw")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SpawnPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_p816j")
+
+[node name="SpawnLocation" type="PathFollow2D" parent="SpawnPath"]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

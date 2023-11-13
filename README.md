@@ -27,4 +27,5 @@ All music is by [FoxSynergy](https://opengameart.org/users/foxsynerg://opengamea
 License CC BY 3.0
 
 ### Sound Effects
-
+Explosion sounds 
+CCO https://kronbits.itch.io/freesfx

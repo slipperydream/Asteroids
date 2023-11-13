@@ -5,7 +5,7 @@ class_name Bullet
 signal expended
 @export var speed : int = 400
 @export var damage : int = 1
-#@export var firing_sound 
+@export var firing_sound : AudioStreamWAV
 
 @onready var line = $Line2D
 @onready var hitbox = $HitboxComponent
@@ -15,6 +15,7 @@ func _ready():
 	hitbox.damage = damage
 	line.default_color = SettingsManager.get_bullet_color()
 	line.width = SettingsManager.get_line_width()
+	AudioStreamManager.play(firing_sound.resource_path)
 
 func _physics_process(delta):
 	check_for_screenwrap()
@@ -27,6 +28,8 @@ func destroy():
 	queue_free()
 
 func _on_hitbox_component_area_entered(area):
+	if area is HurtboxComponent:
+		area.take_damage(damage)
 	destroy()
 
 func check_for_screenwrap():

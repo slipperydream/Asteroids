@@ -28,7 +28,7 @@ func _on_stream_finished(stream):
 	# When finished playing a stream, make the player available again.
 	available_players.append(stream)
 
-func play(sound_path, randomize_pitch : bool = false):
+func play(sound_path, randomize_pitch : bool = true):
 	if play_sounds:
 		var sound = SoundEffect.new()
 		sound.path = sound_path

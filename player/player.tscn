@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cctcduacrw0fj"]
+[gd_scene load_steps=11 format=3 uid="uid://cctcduacrw0fj"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_kv0mp"]
 [ext_resource type="PackedScene" uid="uid://df7c8jicnalpe" path="res://player/bullet.tscn" id="2_bbnrq"]
 [ext_resource type="PackedScene" uid="uid://dyb73gwdeh1c2" path="res://common_components/hurtbox_component.tscn" id="2_llado"]
+[ext_resource type="AudioStream" uid="uid://siej6ub6xtlq" path="res://sound/sfx/Explosion 3 - Sound effects Pack 2.wav" id="3_6vsem"]
 [ext_resource type="PackedScene" uid="uid://ctc48s6nmiom3" path="res://common_components/health_component.tscn" id="3_el2sj"]
 [ext_resource type="PackedScene" uid="uid://cyx2qkytb0y7d" path="res://common_components/teleport_component.tscn" id="4_50q54"]
 
@@ -73,10 +74,11 @@ _data = {
 "thrust": SubResource("Animation_mjss2")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_skill")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_skill") groups=["player"]]
 position = Vector2(300, 300)
 script = ExtResource("1_kv0mp")
 main_weapon = ExtResource("2_bbnrq")
+explosion_sound = ExtResource("3_6vsem")
 movement_skill = NodePath("TeleportComponent")
 
 [node name="CollisionShape" type="CollisionPolygon2D" parent="."]
@@ -116,5 +118,6 @@ wait_time = 0.1
 one_shot = true
 autostart = true
 
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]
 [connection signal="teleported" from="TeleportComponent" to="." method="_on_teleport_component_teleported"]
 [connection signal="timeout" from="MainWeaponTimer" to="." method="_on_main_weapon_timer_timeout"]

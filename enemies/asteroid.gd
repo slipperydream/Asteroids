@@ -10,6 +10,7 @@ enum size {SMALL, MEDIUM, LARGE}
 @export var collision_damage : int = 1
 @export var min_speed : float = 150.0
 @export var max_speed : float = 250.0
+@export var explosion_sound : AudioStreamWAV
 # each smaller size moves faster than the size larger than it
 
 @onready var line = $Line2D
@@ -37,5 +38,10 @@ func check_for_screenwrap():
 	elif global_position.y < 0:
 		global_position.y = get_viewport_rect().size.y
 
-func _on_health_component_killed():
-	emit_signal("shattered", type, points)
+func _on_health_component_killed(_source):
+	emit_signal("shattered", global_position, type, points)
+	explode()
+
+func explode():
+	AudioStreamManager.play(explosion_sound.resource_path)
+	queue_free()

@@ -13,7 +13,7 @@ var settings = {
 		"music_muted": false,
 		"music_volume": -6.0,
 		"sfx_muted": false,
-		"sfx_volume": -6.0,
+		"sfx_volume": -12.0,
 	},
 	"visual": {
 		"show_hitboxes": true,
