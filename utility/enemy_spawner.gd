@@ -70,8 +70,8 @@ func spawn_asteroid(index, pos=null):
 	asteroid_count += 1
 
 func spawn_saucer():
-	for i in range(4):
-		spawn_asteroid(Asteroid.size.SMALL)
+	for i in range(1):
+		spawn_asteroid(Asteroid.size.LARGE)
 	# large only enters from sides not top or bottom. fires randomly
 	# small only eneters from the sides not top or bottom. tracks the player, but shoots a little forward or aft
 
@@ -93,7 +93,6 @@ func _on_spawn_timer_timeout():
 	
 func _on_asteroid_shattered(pos, size, _points):
 	asteroid_count -= 1
-	print("shattered")
 	if size > 0:
 		spawn_asteroid(size-1, pos)
 		spawn_asteroid(size-1, pos)

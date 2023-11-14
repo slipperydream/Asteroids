@@ -5,10 +5,12 @@ class_name Player
 signal died
 
 @export var speed = 400.0
+@export var acceleration = 4.0
 @export var rotation_speed = 1.5
 @export var hp : int = 1
 @export var main_weapon : PackedScene
 @export var main_weapon_cooldown : float = 0.1
+@export var special_weapon : PackedScene
 @export var explosion_sound : AudioStreamWAV
 
 @export var launch_clearance : int = 48
@@ -25,6 +27,7 @@ var forward_thrust = 0
 var can_use_main_weapon : bool = false
 var bullet_count : int = 0
 var is_alive :bool = false
+var computer_control : bool = false
 
 func _ready():
 	is_alive = true
@@ -50,6 +53,8 @@ func get_movement_input():
 		$AnimationPlayer.play("thrust")
 	
 func _physics_process(delta):
+	if computer_control:
+		return
 	if is_alive:
 		if Input.is_action_pressed("main_weapon_fire"):
 			if can_use_main_weapon:
@@ -70,6 +75,8 @@ func _input(event):
 			$AnimationPlayer.play("teleport")
 			await get_tree().create_timer(movement_skill.duration/2).timeout
 			global_position = new_pos
+	if event.is_action_pressed("special_weapon_fire"):
+		special_weapon_fire()
 			
 func _on_teleport_component_teleported():
 	health.invulnerable = false
@@ -82,6 +89,11 @@ func fire_main_weapon(direction : Vector2):
 		weapon.rotation = rotation
 		weapon.linear_velocity = direction * weapon.speed + velocity
 		weapon.global_position = global_position + (direction * launch_clearance)
+
+func special_weapon_fire():
+	var weapon = special_weapon.instantiate()
+	get_tree().root.add_child(weapon)
+	weapon.position = position
 	
 func _on_main_weapon_timer_timeout():
 	can_use_main_weapon = true

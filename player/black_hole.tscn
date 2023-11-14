@@ -1,0 +1,106 @@
+[gd_scene load_steps=7 format=3 uid="uid://dd0j6jnw1sc2f"]
+
+[ext_resource type="Script" path="res://player/black_hole.gd" id="1_bnu6d"]
+[ext_resource type="PackedScene" uid="uid://dsbuqlt6yb7a8" path="res://common_components/hitbox_component.tscn" id="3_vbjla"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_btqjs"]
+radius = 362.199
+
+[sub_resource type="Animation" id="Animation_sdcfi"]
+resource_name = "suck"
+length = 1.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-6.28319, 0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_uwfbf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y110e"]
+_data = {
+"RESET": SubResource("Animation_uwfbf"),
+"suck": SubResource("Animation_sdcfi")
+}
+
+[node name="BlackHole" type="StaticBody2D" groups=["player_weapons"]]
+process_mode = 1
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_bnu6d")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_vbjla")]
+collision_layer = 1
+collision_mask = 12
+
+[node name="Singularity" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(12, 0)
+shape = SubResource("CircleShape2D_btqjs")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+scale = Vector2(5.38695, 6.23892)
+polygon = PackedVector2Array(0.742535, -9.1362, -11.8806, -0.801421, 0.371268, 10.5788, 14.1082, 0.961705)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "suck"
+libraries = {
+"": SubResource("AnimationLibrary_y110e")
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(2.22761, -63.6328, -70, -1, 1.6707, 66.1973, 75.5529, -1.12199)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="HitboxComponent" to="." method="_on_hitbox_component_body_entered"]
+[connection signal="body_exited" from="HitboxComponent" to="." method="_on_hitbox_component_body_exited"]

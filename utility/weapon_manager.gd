@@ -7,7 +7,6 @@ func _ready():
 	bullet_count = 0
 
 func can_shoot():
-	print(bullet_count)
 	if bullet_count < max_bullets:
 		return true
 	else:

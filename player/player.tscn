@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cctcduacrw0fj"]
+[gd_scene load_steps=12 format=3 uid="uid://cctcduacrw0fj"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_kv0mp"]
 [ext_resource type="PackedScene" uid="uid://df7c8jicnalpe" path="res://player/bullet.tscn" id="2_bbnrq"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://siej6ub6xtlq" path="res://sound/sfx/Explosion 3 - Sound effects Pack 2.wav" id="3_6vsem"]
 [ext_resource type="PackedScene" uid="uid://ctc48s6nmiom3" path="res://common_components/health_component.tscn" id="3_el2sj"]
 [ext_resource type="PackedScene" uid="uid://cyx2qkytb0y7d" path="res://common_components/teleport_component.tscn" id="4_50q54"]
+[ext_resource type="PackedScene" uid="uid://dd0j6jnw1sc2f" path="res://player/black_hole.tscn" id="7_pi3m1"]
 
 [sub_resource type="Animation" id="Animation_pj84w"]
 length = 0.001
@@ -75,11 +76,13 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_skill") groups=["player"]]
+process_mode = 1
 position = Vector2(300, 300)
 collision_layer = 2
 collision_mask = 28
 script = ExtResource("1_kv0mp")
 main_weapon = ExtResource("2_bbnrq")
+special_weapon = ExtResource("7_pi3m1")
 explosion_sound = ExtResource("3_6vsem")
 movement_skill = NodePath("TeleportComponent")
 

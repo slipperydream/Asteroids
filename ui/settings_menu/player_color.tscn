@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://csyas1100dxbv"]
+
+[ext_resource type="Script" path="res://ui/settings_menu/bullet_color.gd" id="1_swd0o"]
+
+[node name="PlayerColorSetting" type="HBoxContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.5
+offset_top = -20.0
+offset_right = 113.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "When autobombing is on, if the player is hit and has a bomb fully charged the bomb will be used instead of the user taking a hit."
+script = ExtResource("1_swd0o")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Player Color:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+
+[connection signal="color_changed" from="ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="picker_created" from="ColorPickerButton" to="." method="_on_color_picker_button_picker_created"]

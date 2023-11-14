@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtpxkrjn7nu65"]
+
+[ext_resource type="Script" path="res://ui/main_menu.gd" id="1_nymwd"]
+[ext_resource type="FontFile" uid="uid://bhmp00k1x74q3" path="res://ui/fonts/PixelMechaBold.ttf" id="2_8b837"]
+[ext_resource type="FontFile" uid="uid://dv3201q5d4liu" path="res://ui/fonts/PixelMecha.ttf" id="3_l1u6o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2e75"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fcwao"]
+bg_color = Color(0.0705882, 0.305882, 0.537255, 0)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qpo1"]
+bg_color = Color(0, 0.6, 0.858824, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipdxg"]
+bg_color = Color(0.172549, 0.909804, 0.960784, 1)
+border_color = Color(1, 1, 1, 1)
+
+[node name="PauseMenu" type="Panel"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j2e75")
+script = ExtResource("1_nymwd")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 72.0
+offset_right = 20.0
+offset_bottom = 95.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.996078, 0.905882, 0.380392, 1)
+theme_override_fonts/font = ExtResource("2_8b837")
+theme_override_font_sizes/font_size = 94
+text = "GAME PAUSED"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(140, 105)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -52.5
+offset_right = 70.0
+offset_bottom = 52.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeGameButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_l1u6o")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_fcwao")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4qpo1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ipdxg")
+text = "RESUME GAME"
+
+[node name="NewGameButton2" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_l1u6o")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_fcwao")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4qpo1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ipdxg")
+text = "NEW GAME"
+
+[node name="SettingsButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_l1u6o")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_fcwao")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4qpo1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ipdxg")
+text = "SETTINGS"
+
+[node name="ExitGameButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_l1u6o")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_fcwao")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4qpo1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ipdxg")
+text = "EXIT GAME"
+
+[connection signal="pressed" from="GridContainer/ResumeGameButton" to="." method="_on_resume_game_button_pressed"]
+[connection signal="pressed" from="GridContainer/NewGameButton2" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GridContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="GridContainer/ExitGameButton" to="." method="_on_exit_game_button_pressed"]

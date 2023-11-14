@@ -1,0 +1,214 @@
+[gd_scene load_steps=12 format=3 uid="uid://ul83p2fq80e6"]
+
+[ext_resource type="Script" path="res://ui/settings_menu/settings_menu.gd" id="1_cv4q4"]
+[ext_resource type="FontFile" uid="uid://on3chuy2j60p" path="res://ui/fonts/FutureKid.ttf" id="1_s2m1p"]
+[ext_resource type="FontFile" uid="uid://dv3201q5d4liu" path="res://ui/fonts/PixelMecha.ttf" id="3_bcany"]
+[ext_resource type="PackedScene" uid="uid://dg82idvwoxp7b" path="res://ui/settings_menu/audio_control.tscn" id="4_omw64"]
+[ext_resource type="PackedScene" uid="uid://7sru7obnf0uh" path="res://ui/settings_menu/bullet_color.tscn" id="4_qu7tu"]
+[ext_resource type="PackedScene" uid="uid://csyas1100dxbv" path="res://ui/settings_menu/player_color.tscn" id="5_7w4cv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uixk"]
+bg_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.6, 0.858824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3ikx"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.752941, 0.796078, 0.862745, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucfnm"]
+bg_color = Color(0.14902, 0.168627, 0.266667, 1)
+border_width_left = 2
+border_width_top = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sinmy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucdgs"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="SettingsMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_right = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cv4q4")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1uixk")
+
+[node name="InstructionLabel" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 81.0
+offset_bottom = 116.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0.6, 0.858824, 1)
+theme_override_colors/font_shadow_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("1_s2m1p")
+theme_override_font_sizes/font_size = 32
+text = "Settings
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+
+[node name="DefaultButton" type="Button" parent="."]
+process_mode = 3
+layout_mode = 2
+offset_left = 65.0
+offset_top = 826.0
+offset_right = 159.0
+offset_bottom = 849.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("3_bcany")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_p3ikx")
+action_mode = 0
+text = "DEFAULT
+"
+
+[node name="CloseButton" type="Button" parent="."]
+process_mode = 3
+layout_mode = 2
+offset_left = 584.0
+offset_top = 826.0
+offset_right = 678.0
+offset_bottom = 849.0
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.0941176, 0.0784314, 0.145098, 1)
+theme_override_colors/font_pressed_color = Color(0.0705882, 0.305882, 0.537255, 1)
+theme_override_colors/font_hover_color = Color(0, 0.6, 0.858824, 1)
+theme_override_fonts/font = ExtResource("3_bcany")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_p3ikx")
+action_mode = 0
+text = "CLOSE
+"
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -268.0
+offset_bottom = 337.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_ucfnm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_sinmy")
+tab_alignment = 1
+
+[node name="Audio" type="Panel" parent="TabContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Audio"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 30.0
+offset_right = 226.0
+offset_bottom = 146.0
+
+[node name="MasterAudioControl" parent="TabContainer/Audio/GridContainer" instance=ExtResource("4_omw64")]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="MusicControl" parent="TabContainer/Audio/GridContainer" instance=ExtResource("4_omw64")]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+audio_bus_name = "Music"
+
+[node name="SFXControl" parent="TabContainer/Audio/GridContainer" instance=ExtResource("4_omw64")]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+audio_bus_name = "SFX"
+
+[node name="Graphics" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
+
+[node name="PlayerColorSetting" parent="TabContainer/Graphics" instance=ExtResource("5_7w4cv")]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 60.0
+offset_top = 16.0
+offset_right = 290.0
+offset_bottom = 56.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="BulletColorSetting" parent="TabContainer/Graphics" instance=ExtResource("4_qu7tu")]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 64.0
+offset_top = -228.0
+offset_right = 291.0
+offset_bottom = -188.0
+grow_horizontal = 1
+
+[node name="Visual" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
+
+[node name="Gameplay" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
+
+[node name="Controls" type="Panel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ucdgs")
+
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="pressed" from="DefaultButton" to="." method="_on_default_button_pressed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
