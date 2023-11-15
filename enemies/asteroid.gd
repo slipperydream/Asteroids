@@ -45,3 +45,11 @@ func _on_health_component_killed(_source):
 func explode():
 	AudioStreamManager.play(explosion_sound.resource_path)
 	queue_free()
+
+func spagetthifi():
+	var tween = create_tween()
+	tween.tween_property(self, "skew", 90.0, 1.0)
+	tween.connect("finished", on_tween_finished)
+	
+func on_tween_finished():
+	queue_free()

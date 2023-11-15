@@ -30,18 +30,26 @@ func _physics_process(delta):
 		# assuming Rigidbody2D
 		body.linear_velocity += force_vector
 		body.apply_central_impulse(body.linear_velocity * delta * speed_factor)
+		
 	
 func _on_timer_timeout():
 	destroy()
 	
 func destroy():
-	emit_signal("expended")
 	queue_free()
 
 func _on_hitbox_component_body_entered(body):
-	bodies.append(body)
-
+	if body.has_method("spagetthifi"):
+		var index = bodies.find(body)
+		if index >=0:
+			bodies.remove_at(index)
+		body.spagetthifi()
+		body.linear_velocity = Vector2.ZERO
 
 func _on_hitbox_component_body_exited(body):
 	var index = bodies.find(body)
-	bodies.remove_at(index)
+	if index >=0:
+		bodies.remove_at(index)
+
+func _on_pull_radius_body_entered(body):
+	bodies.append(body)
